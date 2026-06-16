@@ -3,16 +3,17 @@ from .site import (AREAS, BASE_URL, BRAND, DISTRICTS, PHONE, PHONE_DISPLAY,
                    STATIONS, area_url, areas_in, district_url, station_url)
 from .pricing import PRICING
 
+# 카드 앵커 텍스트는 지역명만 사용(도어웨이·키워드 스터핑 신호 방지).
 _DISTRICT_CARDS = "".join(
-    f'<li><a href="{district_url(slug)}">{name} 출장마사지</a></li>'
+    f'<li><a href="{district_url(slug)}">{name}</a></li>'
     for slug, name in DISTRICTS
 )
 _AREA_CARDS = "".join(
-    f'<li><a href="{area_url(slug)}">{name} 출장마사지</a></li>'
+    f'<li><a href="{area_url(slug)}">{name}</a></li>'
     for slug, name, _ in AREAS
 )
 _STATION_CARDS = "".join(
-    f'<li><a href="{station_url(slug)}">{name} 출장마사지</a></li>'
+    f'<li><a href="{station_url(slug)}">{name}</a></li>'
     for slug, name in STATIONS
 )
 

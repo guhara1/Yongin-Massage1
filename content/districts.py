@@ -41,18 +41,18 @@ _cheoin = """
 <h2>처인구 소속 읍·면·동 안내</h2>
 <p>처인구는 포곡읍·모현읍·이동읍·남사읍·양지읍 등 넓은 읍 지역과 원삼면·백암면, 그리고 시내 중심의 중앙동·역북동·삼가동·유림동·동부동까지 12개 읍·면·동으로 이루어져 있습니다. 거주하시거나 머무시는 지역을 선택하시면 해당 생활권의 이동 기준과 방문 안내를 더 자세히 확인하실 수 있습니다.</p>
 <ul class="card-grid">
-<li><a href="/yongin/pogok-eup-chuljangmassage/">포곡읍 출장마사지</a></li>
-<li><a href="/yongin/mohyeon-eup-chuljangmassage/">모현읍 출장마사지</a></li>
-<li><a href="/yongin/idong-eup-chuljangmassage/">이동읍 출장마사지</a></li>
-<li><a href="/yongin/namsa-eup-chuljangmassage/">남사읍 출장마사지</a></li>
-<li><a href="/yongin/yangji-eup-chuljangmassage/">양지읍 출장마사지</a></li>
-<li><a href="/yongin/wonsam-myeon-chuljangmassage/">원삼면 출장마사지</a></li>
-<li><a href="/yongin/baegam-myeon-chuljangmassage/">백암면 출장마사지</a></li>
-<li><a href="/yongin/jungang-dong-chuljangmassage/">중앙동 출장마사지</a></li>
-<li><a href="/yongin/yeokbuk-dong-chuljangmassage/">역북동 출장마사지</a></li>
-<li><a href="/yongin/samga-dong-chuljangmassage/">삼가동 출장마사지</a></li>
-<li><a href="/yongin/yurim-dong-chuljangmassage/">유림동 출장마사지</a></li>
-<li><a href="/yongin/dongbu-dong-chuljangmassage/">동부동 출장마사지</a></li>
+<li><a href="/yongin/pogok-eup-chuljangmassage/">포곡읍</a></li>
+<li><a href="/yongin/mohyeon-eup-chuljangmassage/">모현읍</a></li>
+<li><a href="/yongin/idong-eup-chuljangmassage/">이동읍</a></li>
+<li><a href="/yongin/namsa-eup-chuljangmassage/">남사읍</a></li>
+<li><a href="/yongin/yangji-eup-chuljangmassage/">양지읍</a></li>
+<li><a href="/yongin/wonsam-myeon-chuljangmassage/">원삼면</a></li>
+<li><a href="/yongin/baegam-myeon-chuljangmassage/">백암면</a></li>
+<li><a href="/yongin/jungang-dong-chuljangmassage/">중앙동</a></li>
+<li><a href="/yongin/yeokbuk-dong-chuljangmassage/">역북동</a></li>
+<li><a href="/yongin/samga-dong-chuljangmassage/">삼가동</a></li>
+<li><a href="/yongin/yurim-dong-chuljangmassage/">유림동</a></li>
+<li><a href="/yongin/dongbu-dong-chuljangmassage/">동부동</a></li>
 </ul>
 </section>
 
@@ -60,15 +60,15 @@ _cheoin = """
 <h2>처인구 인근 역세권 안내</h2>
 <p>처인구는 용인경전철(에버라인)이 시내를 가로질러, 김량장역·명지대역·시청·용인대역을 중심으로 한 역세권 생활권이 형성되어 있습니다. 운동장·송담대역, 삼가역, 고진역, 보평역, 둔전역을 거쳐 전대·에버랜드역까지 이어지며, 역 주변은 도로 접근이 좋아 방문 동선을 잡기 수월합니다. 역 기준 위치가 익숙하신 분은 아래 역세권 페이지에서 주변 생활권과 함께 확인하시면 됩니다.</p>
 <ul class="card-grid">
-<li><a href="/yongin/gimnyangjang-station-chuljangmassage/">김량장역 출장마사지</a></li>
-<li><a href="/yongin/myeongji-univ-station-chuljangmassage/">명지대역 출장마사지</a></li>
-<li><a href="/yongin/yongin-cityhall-yongin-univ-station-chuljangmassage/">시청·용인대역 출장마사지</a></li>
-<li><a href="/yongin/samga-station-chuljangmassage/">삼가역 출장마사지</a></li>
-<li><a href="/yongin/stadium-songdam-univ-station-chuljangmassage/">운동장·송담대역 출장마사지</a></li>
-<li><a href="/yongin/gojin-station-chuljangmassage/">고진역 출장마사지</a></li>
-<li><a href="/yongin/bopyeong-station-chuljangmassage/">보평역 출장마사지</a></li>
-<li><a href="/yongin/dunjeon-station-chuljangmassage/">둔전역 출장마사지</a></li>
-<li><a href="/yongin/jeondae-everland-station-chuljangmassage/">전대·에버랜드역 출장마사지</a></li>
+<li><a href="/yongin/gimnyangjang-station-chuljangmassage/">김량장역</a></li>
+<li><a href="/yongin/myeongji-univ-station-chuljangmassage/">명지대역</a></li>
+<li><a href="/yongin/yongin-cityhall-yongin-univ-station-chuljangmassage/">시청·용인대역</a></li>
+<li><a href="/yongin/samga-station-chuljangmassage/">삼가역</a></li>
+<li><a href="/yongin/stadium-songdam-univ-station-chuljangmassage/">운동장·송담대역</a></li>
+<li><a href="/yongin/gojin-station-chuljangmassage/">고진역</a></li>
+<li><a href="/yongin/bopyeong-station-chuljangmassage/">보평역</a></li>
+<li><a href="/yongin/dunjeon-station-chuljangmassage/">둔전역</a></li>
+<li><a href="/yongin/jeondae-everland-station-chuljangmassage/">전대·에버랜드역</a></li>
 </ul>
 </section>
 
@@ -120,18 +120,18 @@ _giheung = """
 <h2>기흥구 소속 행정동 안내</h2>
 <p>기흥구는 신갈동·영덕동·구갈동·상갈동·보라동·기흥동·서농동·구성동·마북동·동백동·상하동·보정동까지 12개 행정동으로 이루어져 있습니다. 거주하시거나 머무시는 동을 선택하시면 해당 생활권의 이동 기준과 방문 안내를 더 자세히 확인하실 수 있습니다.</p>
 <ul class="card-grid">
-<li><a href="/yongin/singal-dong-chuljangmassage/">신갈동 출장마사지</a></li>
-<li><a href="/yongin/yeongdeok-dong-chuljangmassage/">영덕동 출장마사지</a></li>
-<li><a href="/yongin/gugal-dong-chuljangmassage/">구갈동 출장마사지</a></li>
-<li><a href="/yongin/sanggal-dong-chuljangmassage/">상갈동 출장마사지</a></li>
-<li><a href="/yongin/bora-dong-chuljangmassage/">보라동 출장마사지</a></li>
-<li><a href="/yongin/giheung-dong-chuljangmassage/">기흥동 출장마사지</a></li>
-<li><a href="/yongin/seonong-dong-chuljangmassage/">서농동 출장마사지</a></li>
-<li><a href="/yongin/guseong-dong-chuljangmassage/">구성동 출장마사지</a></li>
-<li><a href="/yongin/mabuk-dong-chuljangmassage/">마북동 출장마사지</a></li>
-<li><a href="/yongin/dongbaek-dong-chuljangmassage/">동백동 출장마사지</a></li>
-<li><a href="/yongin/sangha-dong-chuljangmassage/">상하동 출장마사지</a></li>
-<li><a href="/yongin/bojeong-dong-chuljangmassage/">보정동 출장마사지</a></li>
+<li><a href="/yongin/singal-dong-chuljangmassage/">신갈동</a></li>
+<li><a href="/yongin/yeongdeok-dong-chuljangmassage/">영덕동</a></li>
+<li><a href="/yongin/gugal-dong-chuljangmassage/">구갈동</a></li>
+<li><a href="/yongin/sanggal-dong-chuljangmassage/">상갈동</a></li>
+<li><a href="/yongin/bora-dong-chuljangmassage/">보라동</a></li>
+<li><a href="/yongin/giheung-dong-chuljangmassage/">기흥동</a></li>
+<li><a href="/yongin/seonong-dong-chuljangmassage/">서농동</a></li>
+<li><a href="/yongin/guseong-dong-chuljangmassage/">구성동</a></li>
+<li><a href="/yongin/mabuk-dong-chuljangmassage/">마북동</a></li>
+<li><a href="/yongin/dongbaek-dong-chuljangmassage/">동백동</a></li>
+<li><a href="/yongin/sangha-dong-chuljangmassage/">상하동</a></li>
+<li><a href="/yongin/bojeong-dong-chuljangmassage/">보정동</a></li>
 </ul>
 </section>
 
@@ -139,16 +139,16 @@ _giheung = """
 <h2>기흥구 인근 역세권 안내</h2>
 <p>기흥구는 용인시에서 지하철역이 가장 촘촘한 행정구입니다. 수인분당선 기흥역·신갈역·상갈역·구성역·보정역과, 용인경전철 강남대역·지석역·어정역·동백역·초당역이 함께 지나며, 기흥역은 수인분당선과 에버라인의 환승역으로 교통의 중심을 이룹니다. 역 주변은 도로 접근이 좋아 방문 동선을 잡기 수월하므로, 역 기준 위치가 익숙하신 분은 아래 역세권 페이지에서 주변 생활권과 함께 확인하시면 됩니다.</p>
 <ul class="card-grid">
-<li><a href="/yongin/giheung-station-chuljangmassage/">기흥역 출장마사지</a></li>
-<li><a href="/yongin/singal-station-chuljangmassage/">신갈역 출장마사지</a></li>
-<li><a href="/yongin/sanggal-station-chuljangmassage/">상갈역 출장마사지</a></li>
-<li><a href="/yongin/guseong-station-chuljangmassage/">구성역 출장마사지</a></li>
-<li><a href="/yongin/bojeong-station-chuljangmassage/">보정역 출장마사지</a></li>
-<li><a href="/yongin/gangnamdae-station-chuljangmassage/">강남대역 출장마사지</a></li>
-<li><a href="/yongin/jiseok-station-chuljangmassage/">지석역 출장마사지</a></li>
-<li><a href="/yongin/eojeong-station-chuljangmassage/">어정역 출장마사지</a></li>
-<li><a href="/yongin/dongbaek-station-chuljangmassage/">동백역 출장마사지</a></li>
-<li><a href="/yongin/chodang-station-chuljangmassage/">초당역 출장마사지</a></li>
+<li><a href="/yongin/giheung-station-chuljangmassage/">기흥역</a></li>
+<li><a href="/yongin/singal-station-chuljangmassage/">신갈역</a></li>
+<li><a href="/yongin/sanggal-station-chuljangmassage/">상갈역</a></li>
+<li><a href="/yongin/guseong-station-chuljangmassage/">구성역</a></li>
+<li><a href="/yongin/bojeong-station-chuljangmassage/">보정역</a></li>
+<li><a href="/yongin/gangnamdae-station-chuljangmassage/">강남대역</a></li>
+<li><a href="/yongin/jiseok-station-chuljangmassage/">지석역</a></li>
+<li><a href="/yongin/eojeong-station-chuljangmassage/">어정역</a></li>
+<li><a href="/yongin/dongbaek-station-chuljangmassage/">동백역</a></li>
+<li><a href="/yongin/chodang-station-chuljangmassage/">초당역</a></li>
 </ul>
 </section>
 
@@ -200,12 +200,12 @@ _suji = """
 <h2>수지구 소속 행정동 안내</h2>
 <p>수지구는 풍덕천동·신봉동·죽전동·동천동·상현동·성복동까지 6개 행정동으로 이루어져 있습니다. 동마다 대규모 아파트 단지가 밀집해 있어 같은 동 안에서도 단지에 따라 방문 동선이 달라지므로, 거주하시는 동을 선택하시면 해당 생활권의 이동 기준과 방문 안내를 더 자세히 확인하실 수 있습니다.</p>
 <ul class="card-grid">
-<li><a href="/yongin/pungdeokcheon-dong-chuljangmassage/">풍덕천동 출장마사지</a></li>
-<li><a href="/yongin/sinbong-dong-chuljangmassage/">신봉동 출장마사지</a></li>
-<li><a href="/yongin/jukjeon-dong-chuljangmassage/">죽전동 출장마사지</a></li>
-<li><a href="/yongin/dongcheon-dong-chuljangmassage/">동천동 출장마사지</a></li>
-<li><a href="/yongin/sanghyeon-dong-chuljangmassage/">상현동 출장마사지</a></li>
-<li><a href="/yongin/seongbok-dong-chuljangmassage/">성복동 출장마사지</a></li>
+<li><a href="/yongin/pungdeokcheon-dong-chuljangmassage/">풍덕천동</a></li>
+<li><a href="/yongin/sinbong-dong-chuljangmassage/">신봉동</a></li>
+<li><a href="/yongin/jukjeon-dong-chuljangmassage/">죽전동</a></li>
+<li><a href="/yongin/dongcheon-dong-chuljangmassage/">동천동</a></li>
+<li><a href="/yongin/sanghyeon-dong-chuljangmassage/">상현동</a></li>
+<li><a href="/yongin/seongbok-dong-chuljangmassage/">성복동</a></li>
 </ul>
 </section>
 
@@ -213,11 +213,11 @@ _suji = """
 <h2>수지구 인근 역세권 안내</h2>
 <p>수지구의 교통 중심은 단연 신분당선입니다. 죽전역·수지구청역·성복역·상현역·동천역이 행정구를 남북으로 가로지르며, 강남·판교·분당 방면으로 빠르게 연결되어 출퇴근 수요가 큰 노선입니다. 역 주변은 아파트와 상권이 밀집해 방문 동선을 잡기 수월하므로, 역 기준 위치가 익숙하신 분은 아래 역세권 페이지에서 주변 생활권과 함께 확인하시면 됩니다.</p>
 <ul class="card-grid">
-<li><a href="/yongin/jukjeon-station-chuljangmassage/">죽전역 출장마사지</a></li>
-<li><a href="/yongin/suji-gu-office-station-chuljangmassage/">수지구청역 출장마사지</a></li>
-<li><a href="/yongin/seongbok-station-chuljangmassage/">성복역 출장마사지</a></li>
-<li><a href="/yongin/sanghyeon-station-chuljangmassage/">상현역 출장마사지</a></li>
-<li><a href="/yongin/dongcheon-station-chuljangmassage/">동천역 출장마사지</a></li>
+<li><a href="/yongin/jukjeon-station-chuljangmassage/">죽전역</a></li>
+<li><a href="/yongin/suji-gu-office-station-chuljangmassage/">수지구청역</a></li>
+<li><a href="/yongin/seongbok-station-chuljangmassage/">성복역</a></li>
+<li><a href="/yongin/sanghyeon-station-chuljangmassage/">상현역</a></li>
+<li><a href="/yongin/dongcheon-station-chuljangmassage/">동천역</a></li>
 </ul>
 </section>
 

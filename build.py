@@ -18,8 +18,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from content import PAGES
 from content.site import (AREAS, BASE_URL, BRAND, BRAND_MARK, DISTRICTS, NAV,
-                          PHONE, PHONE_DISPLAY, REGION_FULL, REGION_LABEL,
-                          STATIONS, area_url, district_url, station_url)
+                          NAVER_VERIFICATION, PHONE, PHONE_DISPLAY, REGION_FULL,
+                          REGION_LABEL, STATIONS, area_url, district_url,
+                          station_url)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MIN_INDEX_CHARS = 2000
@@ -177,8 +178,10 @@ def render_page_hero(page: dict) -> str:
 
 
 def render_footer() -> str:
+    # 푸터·카드 앵커는 지역명만 사용한다(도어웨이·키워드 스터핑 신호 방지).
+    # 핵심 키워드(출장마사지)는 각 페이지의 title·H1·본문에서 자연스럽게 노출된다.
     area_links = "".join(
-        f'<li><a href="{area_url(s)}">{n} 출장마사지</a></li>'
+        f'<li><a href="{area_url(s)}">{n}</a></li>'
         for s, n in [(a[0], a[1]) for a in AREAS[:6]]
     )
     station_links = "".join(
@@ -186,7 +189,7 @@ def render_footer() -> str:
         for s, n in STATIONS[:5]
     )
     district_links = "".join(
-        f'<li><a href="{district_url(s)}">{n} 출장마사지</a></li>'
+        f'<li><a href="{district_url(s)}">{n}</a></li>'
         for s, n in DISTRICTS
     )
     return f"""<footer class="site-footer">
@@ -258,6 +261,7 @@ def render_page(page: dict) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="naver-site-verification" content="{NAVER_VERIFICATION}">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 {robots}
