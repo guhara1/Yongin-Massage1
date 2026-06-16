@@ -10,6 +10,9 @@ PHONE_DISPLAY = "0508-202-4719"
 # 검색엔진 사이트 소유확인 코드
 NAVER_VERIFICATION = "815b57c52edbf38f8941977a1f39ec1e98e5ba72"
 
+# IndexNow 키 (Bing·Naver·Yandex 즉시 색인 통보). 루트에 {KEY}.txt 로도 배포된다.
+INDEXNOW_KEY = "f250d3453a65550cf161e7ba85bba88c"
+
 REGION_LABEL = "용인시"
 REGION_FULL = "경기도 용인시"
 

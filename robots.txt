@@ -1,4 +1,17 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Daum
+Allow: /
+
 User-agent: *
 Allow: /
 
 Sitemap: https://yongin-massage1.pages.dev/sitemap.xml
+Sitemap: https://yongin-massage1.pages.dev/rss.xml

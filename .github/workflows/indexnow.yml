@@ -1,0 +1,47 @@
+name: 색인 통보 (IndexNow + Google)
+
+# main 에 푸시될 때마다(= 새 글/수정 배포 시) 검색엔진에 즉시 색인 통보.
+# IndexNow → Bing·Naver·Yandex.  (선택) Google Indexing API → GCP_SA_JSON 시크릿 등록 시.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sitemap.xml'
+      - 'rss.xml'
+      - '**/index.html'
+      - 'content/**'
+      - 'build.py'
+  workflow_dispatch:        # 수동 실행도 허용
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexing-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # Cloudflare Pages 자동 배포가 키 파일을 반영할 시간을 잠시 확보
+      - name: 배포 반영 대기
+        run: sleep 90
+
+      - name: IndexNow 제출 (Bing·Naver·Yandex)
+        run: python3 indexnow.py
+
+      - name: Google Indexing API (시크릿 GCP_SA_JSON 있을 때만)
+        if: ${{ secrets.GCP_SA_JSON != '' }}
+        env:
+          GCP_SA_JSON: ${{ secrets.GCP_SA_JSON }}
+        run: |
+          python3 -m pip install --quiet google-auth requests
+          printf '%s' "$GCP_SA_JSON" > /tmp/sa.json
+          GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json python3 google_index.py || true
