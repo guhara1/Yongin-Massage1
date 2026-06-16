@@ -5,7 +5,14 @@ const path = require('path');
 const cfg = require('./site.config.js');
 const { districts, dongs, stations, pages } = require('./data.js');
 
-const OUT = path.join(__dirname, 'public');
+// Cloudflare Pages 기본 설정(출력 디렉터리=루트)에서 바로 열리도록 저장소 루트에 생성합니다.
+const OUT = __dirname;
+// 빌드 때마다 정리하는 "생성 결과물" 목록 (소스 파일은 절대 건드리지 않음)
+const GENERATED = [
+  'index.html', 'sitemap.xml', 'robots.txt', 'assets',
+  'yongin', 'yongin-chuljangmassage',
+  'reservation', 'notice', 'homethai-guide', 'privacy', 'support',
+];
 const { BRAND, PHONE, PHONE_TEL, SITE_URL, SITE_NAME, MAIN_SLUG } = cfg;
 
 // ---- helpers ----------------------------------------------------------
@@ -417,13 +424,15 @@ Sitemap: ${SITE_URL}/sitemap.xml
 function copyAssets() {
   const dir = path.join(OUT, 'assets');
   fs.mkdirSync(dir, { recursive: true });
-  fs.copyFileSync(path.join(__dirname, 'assets', 'style.css'), path.join(dir, 'style.css'));
+  fs.copyFileSync(path.join(__dirname, 'src', 'style.css'), path.join(dir, 'style.css'));
 }
 
 // ---- 실행 -------------------------------------------------------------
 function run() {
-  fs.rmSync(OUT, { recursive: true, force: true });
-  fs.mkdirSync(OUT, { recursive: true });
+  // 생성 결과물만 정리 (소스/.git 보존)
+  for (const entry of GENERATED) {
+    fs.rmSync(path.join(OUT, entry), { recursive: true, force: true });
+  }
   copyAssets();
   buildMain();
   districts.forEach(buildDistrict);

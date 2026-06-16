@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yongin-massage1.pages.dev/sitemap.xml

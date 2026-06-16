@@ -29,16 +29,27 @@
 ## 빌드
 
 ```bash
-node build.js   # public/ 에 정적 사이트 생성
+node build.js   # 저장소 루트에 정적 사이트(HTML·sitemap·robots) 생성
 ```
 
-- `site.config.js` — 상호·전화번호·도메인 설정 (배포 도메인이 정해지면 `SITE_URL` 교체)
+- `site.config.js` — 상호·전화번호·도메인 설정 (커스텀 도메인 연결 시 `SITE_URL` 교체)
 - `data.js` — 행정구/읍면동/역세권/기타 페이지 데이터 및 description
-- `build.js` — 정적 HTML·sitemap·robots 생성기
-- `assets/style.css` — 모바일 우선 스타일
-- `public/` — 생성 결과물(배포 대상)
+- `build.js` — 정적 HTML·sitemap·robots 생성기 (저장소 루트로 출력)
+- `src/style.css` — 모바일 우선 스타일(소스)
+- 생성 결과물: `index.html`(→메인 리다이렉트), `yongin-chuljangmassage/`, `yongin/...`, `reservation/` 등, `assets/`, `sitemap.xml`, `robots.txt`
 
-## 배포
+## 배포 (Cloudflare Pages · GitHub 자동 배포)
 
-`public/` 디렉터리를 정적 호스팅(예: GitHub Pages, Netlify, Cloudflare Pages)에 올리면 됩니다.
-배포 전 `site.config.js`의 `SITE_URL`을 실제 도메인으로 변경한 뒤 `node build.js`를 다시 실행하세요.
+이 저장소는 **빌드 결과물이 루트에 포함**되어 있어 추가 빌드 없이 그대로 배포됩니다.
+
+Cloudflare Pages 프로젝트 설정 권장값:
+
+| 항목 | 값 |
+|------|-----|
+| Production branch | `main` |
+| Framework preset | None |
+| Build command | (비움) |
+| Build output directory | `/` (비움 = 루트) |
+
+`main` 브랜치에 푸시하면 `https://yongin-massage1.pages.dev` 로 자동 배포됩니다.
+커스텀 도메인을 연결하면 `site.config.js`의 `SITE_URL`을 바꾸고 `node build.js`를 다시 실행하세요.
