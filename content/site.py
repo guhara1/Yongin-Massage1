@@ -1,6 +1,6 @@
 # 사이트 공통 설정 (간다GO · 용인 출장마사지·홈타이)
 # 배포 도메인 확정 후 BASE_URL 을 실제 도메인으로 변경하세요.
-BASE_URL = "https://yongin-massage1.pages.dev"
+BASE_URL = "https://yongin-massage1.netlify.app"
 
 BRAND = "간다GO"
 BRAND_MARK = "GO"
@@ -8,7 +8,7 @@ PHONE = "0508-202-4719"
 PHONE_DISPLAY = "0508-202-4719"
 
 # 검색엔진 사이트 소유확인 코드
-NAVER_VERIFICATION = "815b57c52edbf38f8941977a1f39ec1e98e5ba72"
+NAVER_VERIFICATION = "39101ec60b272e4502c2066282a6588080ac5dfc"
 
 # IndexNow 키 (Bing·Naver·Yandex 즉시 색인 통보). 루트에 {KEY}.txt 로도 배포된다.
 INDEXNOW_KEY = "f250d3453a65550cf161e7ba85bba88c"

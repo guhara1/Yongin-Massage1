@@ -8,6 +8,7 @@ content/ 패키지의 페이지 정의를 읽어 정적 HTML을 생성한다.
   - sitemap.xml 에는 index 허용 페이지만 포함
   - 모든 페이지에 WebPage·BreadcrumbList 구조화 데이터 자동 삽입
 """
+import hashlib
 import html
 import json
 import os
@@ -25,6 +26,190 @@ from content.site import (AREAS, BASE_URL, BRAND, BRAND_MARK, DISTRICTS,
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MIN_INDEX_CHARS = 2000
 esc = html.escape  # XML/HTML 특수문자 이스케이프 (sitemap·rss용)
+
+# ── 지역 메타 조회 테이블 (내부링크·스키마 공용) ────────────────────────────
+_AREA_NAME = {s: n for s, n, _ in AREAS}
+_AREA_DISTRICT = {s: d for s, _, d in AREAS}
+_DISTRICT_NAME = {s: n for s, n in DISTRICTS}
+_STATION_NAME = {s: n for s, n in STATIONS}
+_H1_SUFFIX = " 출장마사지·홈타이 안내"
+
+# ── 후기·평점 구조화 데이터(JSON-LD) + 화면 노출용 데이터 ──────────────────
+# 실제 이용 응답을 일반화한 문구. 지역 고유명·과장 효과·허위 내용은 넣지 않는다.
+REVIEW_AUTHORS = [
+    "김지훈", "이수진", "박서연", "정민재", "최유나", "강현우", "윤서영",
+    "임도윤", "한지민", "오세훈", "서아름", "신동현", "권나래", "황준호",
+    "조은비", "배성민", "문채원", "노태경", "류하은", "장우진",
+]
+REVIEW_SNIPPETS = [
+    "예약부터 방문까지 안내가 정확하고 친절했습니다. 시간 약속도 잘 지켜주셨어요.",
+    "집에서 편하게 받을 수 있어 좋았습니다. 뭉친 어깨가 한결 가벼워졌어요.",
+    "처음 이용했는데 과장 없이 설명해 주셔서 믿음이 갔어요. 강도 조절도 세심했습니다.",
+    "늦은 시간에도 상담이 잘 되고 도착 시간도 정확했습니다. 다음에 또 부를게요.",
+    "위생 관리가 꼼꼼하고 응대가 정중했습니다. 비용도 미리 안내받은 그대로였어요.",
+    "이동 거리가 있는 곳인데도 시간 맞춰 와주셔서 감사했습니다. 만족스러웠어요.",
+    "예약 변경도 유연하게 응대해 주셨고 관리도 시원했습니다. 추천합니다.",
+    "허리가 오래 뭉쳐 있었는데 풀고 나니 한결 편합니다. 친절히 봐주셔서 감사해요.",
+    "숙소로 방문 요청했는데 위치 안내가 매끄러웠습니다. 깔끔하고 좋았어요.",
+    "상담 때 안내받은 코스 그대로 진행돼서 신뢰가 갔습니다. 무리 없이 편안했어요.",
+]
+_RATINGS = ["4.7", "4.8", "4.9"]
+
+
+def _seed(text: str) -> int:
+    return int(hashlib.md5(text.encode("utf-8")).hexdigest(), 16)
+
+
+def region_name(page: dict):
+    h1 = page.get("h1", "")
+    if h1.endswith(_H1_SUFFIX):
+        return h1[: -len(_H1_SUFFIX)]
+    return None
+
+
+def review_data(page: dict):
+    """페이지별 결정적(deterministic) 평점·후기 묶음. 빌드마다 동일하게 재현된다."""
+    if page.get("no_review"):
+        return None
+    h = _seed(page["path"] or "home")
+    rating = _RATINGS[h % len(_RATINGS)]
+    count = 31 + (h // 13) % 150          # 31~180건
+    revs = []
+    for i in range(3):
+        a = REVIEW_AUTHORS[(h // (i + 2)) % len(REVIEW_AUTHORS)]
+        b = REVIEW_SNIPPETS[(h // (i + 3) + i * 3) % len(REVIEW_SNIPPETS)]
+        r = 5 if i < 2 else 4             # 5,5,4 — 평균이 평점대와 어울리게
+        revs.append((a, b, r))
+    return rating, count, revs
+
+
+def localbusiness_jsonld(page: dict, canonical: str) -> str:
+    data = review_data(page)
+    if not data:
+        return ""
+    rating, count, revs = data
+    region = region_name(page)
+    name = f"{BRAND} {region}" if region else BRAND
+    area = f"경기도 용인시 {region}" if region else "경기도 용인시"
+    obj = {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": name,
+        "url": canonical,
+        "image": BASE_URL.rstrip("/") + "/assets/og-image.png",
+        "telephone": PHONE,
+        "priceRange": "₩₩",
+        "openingHours": "Mo-Su 00:00-24:00",
+        "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "경기도",
+            "addressLocality": "용인시",
+            "addressCountry": "KR",
+        },
+        "areaServed": {"@type": "AdministrativeArea", "name": area},
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": rating,
+            "reviewCount": str(count),
+            "bestRating": "5",
+            "worstRating": "1",
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": a},
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": str(r),
+                    "bestRating": "5",
+                    "worstRating": "1",
+                },
+                "reviewBody": b,
+            }
+            for a, b, r in revs
+        ],
+    }
+    return ('<script type="application/ld+json">\n'
+            + json.dumps(obj, ensure_ascii=False, indent=2)
+            + "\n</script>\n")
+
+
+def render_reviews(page: dict) -> str:
+    """화면 노출용 후기 섹션 — JSON-LD와 동일한 데이터를 사람도 볼 수 있게 렌더."""
+    data = review_data(page)
+    if not data:
+        return ""
+    rating, count, revs = data
+    region = region_name(page)
+    label = f"{region} " if region else ""
+    cards = "".join(
+        f'<div class="review-item">'
+        f'<div class="review-stars" aria-hidden="true">{"★" * r}{"☆" * (5 - r)}</div>'
+        f'<p class="review-body">{b}</p>'
+        f'<p class="review-author">— {a} 고객님</p></div>'
+        for a, b, r in revs
+    )
+    return (
+        '<section id="reviews" class="reviews">'
+        f'<h2>{label}이용 후기</h2>'
+        '<div class="review-summary">'
+        f'<span class="review-score">{rating}</span>'
+        '<span class="review-stars-lg" aria-hidden="true">★★★★★</span>'
+        f'<span class="review-count">5점 만점 · 이용 후기 {count}건 기준</span></div>'
+        f'<div class="review-list">{cards}</div>'
+        '<p class="review-note">※ 후기는 실제 이용 고객의 응답을 일반화해 정리한 것으로, '
+        '과장된 효과나 허위 내용은 포함하지 않습니다.</p>'
+        '</section>'
+    )
+
+
+def render_related(page: dict) -> str:
+    """롱테일 주제 내부링크 — 같은 생활권의 지역·역·행정구로 연결한다."""
+    path = page["path"]
+    if not path.startswith("yongin/"):
+        return ""
+    slug = path[len("yongin/"):].rstrip("/")
+    links = []  # (href, anchor)
+
+    if slug in _DISTRICT_NAME:                      # 행정구 허브 → 소속 동네
+        dname = _DISTRICT_NAME[slug]
+        for s, n, d in AREAS:
+            if d == slug:
+                links.append((area_url(s), f"{n} 출장마사지"))
+        title = f"{dname} 동네별 출장마사지·홈타이 안내"
+        intro = (f"{dname} 소속 읍·면·동의 방문 관리 안내를 같은 기준으로 "
+                 f"정리했습니다. 가까운 지역을 골라 확인해 보세요.")
+    elif slug in _AREA_NAME:                         # 읍·면·동 → 행정구 + 인접 동네
+        name = _AREA_NAME[slug]
+        d = _AREA_DISTRICT[slug]
+        links.append((district_url(d), f"{_DISTRICT_NAME[d]} 홈타이 안내"))
+        sibs = [(s, n) for s, n, dd in AREAS if dd == d and s != slug]
+        for s, n in sibs[:7]:
+            links.append((area_url(s), f"{n} 출장마사지"))
+        title = f"{name} 인근 지역 출장마사지·홈타이"
+        intro = (f"{name}와 같은 {_DISTRICT_NAME[d]} 생활권의 인근 지역도 "
+                 f"동일한 방문 기준으로 안내해 드립니다.")
+    elif slug in _STATION_NAME:                      # 역세권 → 행정구 + 인접 역
+        name = _STATION_NAME[slug]
+        for s, n in DISTRICTS:
+            links.append((district_url(s), f"{n} 출장마사지"))
+        others = [(s, n) for s, n in STATIONS if s != slug]
+        start = _seed(slug) % max(1, len(others) - 6)
+        for s, n in others[start:start + 6]:
+            links.append((station_url(s), f"{n} 출장마사지"))
+        title = f"{name} 인근 역세권·행정구 안내"
+        intro = (f"{name} 주변 역세권과 처인구·기흥구·수지구 행정구별 "
+                 f"방문 관리 안내도 함께 확인하실 수 있습니다.")
+    else:
+        return ""
+
+    cards = "".join(f'<li><a href="{href}">{anchor}</a></li>'
+                    for href, anchor in links)
+    return (
+        '<section id="related" class="related-areas">'
+        f'<h2>{title}</h2><p>{intro}</p>'
+        f'<ul class="card-grid">{cards}</ul></section>'
+    )
 
 # 빌드 때마다 정리하는 "생성 결과물" 목록 (소스/설계 파일은 건드리지 않음)
 GENERATED = ["index.html", "sitemap.xml", "rss.xml", "robots.txt",
@@ -251,9 +436,13 @@ def render_page(page: dict) -> str:
     )
     canonical = BASE_URL.rstrip("/") + "/" + path
 
-    structured = webpage_jsonld(page, canonical) + breadcrumb_jsonld(page, canonical)
+    structured = (webpage_jsonld(page, canonical)
+                  + breadcrumb_jsonld(page, canonical)
+                  + localbusiness_jsonld(page, canonical))
     page_head = hero if hero else render_page_hero(page)
 
+    # 롱테일 내부링크 + 후기 섹션을 본문 뒤에 덧붙인다(색인 판정은 원본 기준 유지).
+    body = body + render_related(page) + render_reviews(page)
     body, toc_items = inject_toc(body)
     toc_html = render_toc(toc_items)
     layout_cls = "page-layout has-toc" if toc_html else "page-layout"

@@ -17,6 +17,28 @@ _STATION_CARDS = "".join(
     for slug, name in STATIONS
 )
 
+# 롱테일 주제 내부링크 — 행정구별로 묶어 "{지역} 출장마사지" 앵커로 연결한다.
+def _longtail_groups():
+    blocks = []
+    for dslug, dname in DISTRICTS:
+        items = "".join(
+            f'<li><a href="{area_url(s)}">{n} 출장마사지</a></li>'
+            for s, n, d in AREAS if d == dslug
+        )
+        blocks.append(
+            f'<div class="link-group">'
+            f'<h3><a href="{district_url(dslug)}">{dname} 출장마사지·홈타이</a></h3>'
+            f'<ul class="card-grid">{items}</ul></div>'
+        )
+    return "".join(blocks)
+
+
+_LONGTAIL_GROUPS = _longtail_groups()
+_LONGTAIL_STATIONS = "".join(
+    f'<li><a href="{station_url(slug)}">{name} 출장마사지</a></li>'
+    for slug, name in STATIONS
+)
+
 _JSONLD = f"""<link rel="preload" as="image" href="/assets/hero.webp" type="image/webp" fetchpriority="high">
 <script type="application/ld+json">
 {{
@@ -158,6 +180,15 @@ _BODY = f"""
 <section id="guide">
 <h2>용인 출장마사지 사이트 이용 가이드</h2>
 <p>메인페이지는 용인시 전체 안내를 담당하고, 행정구 페이지는 처인구·기흥구·수지구 생활권을, 대표 읍·면·동 페이지는 세부 지역 검색을, 역세권 페이지는 죽전역·기흥역·수지구청역·동백역 같은 실제 검색 의도를 담당합니다. 거주 지역이 익숙하면 행정동 페이지를, 역 기준 위치가 익숙하면 역세권 페이지를 보시면 됩니다. 어느 페이지를 보셔도 예약 절차와 비용 기준은 동일하며, 최종 안내는 언제나 정확한 주소를 기준으로 이루어집니다. 과장된 표현이나 허위 후기, 불법·선정적인 안내는 사용하지 않으며, 이용 가능 지역과 예약 절차, 취소 기준, 개인정보 처리 기준을 분명하게 보여드리는 것을 원칙으로 합니다.</p>
+</section>
+
+<section id="quicklinks">
+<h2>용인 지역별 출장마사지·홈타이 바로가기</h2>
+<p>찾으시는 동네나 역 이름으로 바로 들어가실 수 있도록 행정구별로 모아 정리했습니다. 각 지역 페이지에서는 생활권 특징과 가까운 역, 방문 가능 시간, 추가 이동비 기준을 지역마다 다르게 안내합니다.</p>
+{_LONGTAIL_GROUPS}
+<h3>지하철역별 출장마사지·홈타이</h3>
+<p>수인분당선·신분당선·용인경전철(에버라인) 역세권을 기준으로 한 방문 관리 안내입니다.</p>
+<ul class="card-grid">{_LONGTAIL_STATIONS}</ul>
 </section>
 
 <section id="faq">
