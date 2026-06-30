@@ -705,4 +705,40 @@ th { background: var(--panel-2); color: var(--gold-soft); font-family: var(--ser
   h2 { font-size: 1.22rem; }
   .page-content section { padding: 26px 22px 22px; border-radius: 14px; }
   .cta { padding: 36px 20px; }
+  .review-summary { flex-wrap: wrap; }
+  .review-list { grid-template-columns: 1fr; }
 }
+
+/* 후기·평점 섹션 */
+.reviews .review-summary {
+  display: flex; align-items: center; gap: 14px;
+  margin: 14px 0 22px; flex-wrap: wrap;
+}
+.review-score {
+  font-family: var(--serif); font-weight: 900; font-size: 2.4rem;
+  color: var(--gold-soft); line-height: 1;
+}
+.review-stars-lg { color: var(--gold); letter-spacing: 0.12em; font-size: 1.25rem; }
+.review-count { color: var(--text-dim); font-size: 0.92rem; }
+.review-list {
+  display: grid; gap: 14px; margin: 4px 0 14px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.review-item {
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: 12px; padding: 16px 18px;
+}
+.review-item .review-stars { color: var(--gold); letter-spacing: 0.1em; margin-bottom: 8px; }
+.review-item .review-body { margin: 0 0 10px; color: var(--text); }
+.review-item .review-author { margin: 0; color: var(--text-dim); font-size: 0.88rem; }
+.review-note { color: var(--text-dim); font-size: 0.85rem; margin: 6px 0 0; }
+
+/* 인접 지역 내부링크 */
+.related-areas h2 { margin-bottom: 4px; }
+.related-areas > p { color: var(--text-dim); margin: 0 0 6px; }
+
+/* 메인 롱테일 그룹 */
+.link-group { margin: 8px 0 18px; }
+.link-group h3 { margin: 0 0 2px; font-size: 1.06rem; }
+.link-group h3 a { color: var(--gold-soft); }
+.link-group h3 a:hover { color: var(--gold); }
